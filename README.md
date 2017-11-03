@@ -5,7 +5,11 @@
 
 # Introduction
 - A file encryption/decryption library that uses the same algorithm as OpenSSL's with IV and salt
-- You can set key and IV manually instead of creating them from password and salt
+- You can set key and IV manually instead of creating them from password and salt.
+
+# !!!Caution!!!
+- OpenSSL's key creation algorithm with password and salt is NOT secure.
+- You should set key and IV manually or use some alternative algorithms.
 
 # Examples
 - Read cbc\_test.go
