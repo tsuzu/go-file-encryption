@@ -22,7 +22,7 @@ func ReadByteChannelForFixedSize(ch chan byte, length int) []byte {
 	return buf
 }
 
-func PBKDF1(password []byte, salt []byte) ([]byte, []byte) {
+func PBKDF1(password, salt []byte) ([]byte, []byte) {
 	key := md5.Sum(append(password, salt...))
 	iv := md5.Sum(append(append(key[:], password...), salt...))
 

@@ -7,5 +7,5 @@ package fileencryption
 import "io"
 
 type CrytionStream interface {
-	io.ReadWriteCloser
+	io.Reader
 }
