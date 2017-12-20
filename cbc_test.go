@@ -106,43 +106,44 @@ func TestCBCEncryptionAES128CBC(t *testing.T) {
 const BaseCharacters = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
 
 func benchmarkCBCEncryptionAESCBCRandom(bit, length int, b *testing.B) {
-	b.StopTimer()
-	b.ResetTimer()
-	base := make([]byte, length)
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		base := make([]byte, length)
 
-	for i := range base {
-		base[i] = BaseCharacters[rand.Intn(len(BaseCharacters))]
-	}
+		for i := range base {
+			base[i] = BaseCharacters[rand.Intn(len(BaseCharacters))]
+		}
 
-	b.StartTimer()
-	stream, err := NewCBCEncryptionStream(bit, Password, bytes.NewReader(base))
+		b.StartTimer()
+		stream, err := NewCBCEncryptionStream(bit, Password, bytes.NewReader(base))
 
-	if err != nil {
-		b.Fatal("NewCBCEncryptionStream error: ", err)
+		if err != nil {
+			b.Fatal("NewCBCEncryptionStream error: ", err)
 
-		return
-	}
+			return
+		}
 
-	stream2, err := NewCBCDecryptionStream(bit, Password, stream)
+		stream2, err := NewCBCDecryptionStream(bit, Password, stream)
 
-	if err != nil {
-		b.Fatal("NewCBCDecryptionStream error: ", err)
+		if err != nil {
+			b.Fatal("NewCBCDecryptionStream error: ", err)
 
-		return
-	}
+			return
+		}
 
-	buf, err := ioutil.ReadAll(stream2)
+		buf, err := ioutil.ReadAll(stream2)
 
-	b.StopTimer()
+		b.StopTimer()
 
-	if err != nil {
-		b.Fatal("Read error: ", err)
+		if err != nil {
+			b.Fatal("Read error: ", err)
 
-		return
-	}
+			return
+		}
 
-	if !reflect.DeepEqual(base, buf) {
-		b.Fatal("Illegal result", base[:10], buf[:10])
+		if !reflect.DeepEqual(base, buf) {
+			b.Fatal("Illegal result", base[:10], buf[:10])
+		}
 	}
 }
 
