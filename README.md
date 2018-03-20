@@ -1,5 +1,5 @@
 # Go-File-Encryption
-[![Build Status](http://img.shields.io/travis/cs3238-tsuzu/popcon-sc/master.svg?style=flat-square)](https://travis-ci.org/cs3238-tsuzu/go-file-encryption)
+[![Build Status](http://img.shields.io/travis/cs3238-tsuzu/go-file-encryption/master.svg?style=flat-square)](https://travis-ci.org/cs3238-tsuzu/go-file-encryption)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](./LICENSE)
 
 
